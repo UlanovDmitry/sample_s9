@@ -1,0 +1,14 @@
+НЕ использовать part0_pins.xml из eSnyne для штатной Antminer S9!
+
+В board_files eSnyne указаны LED на A10, E13 — это не совпадает с реальной S9
+(D7/D8/D5/D6 → F16, L19, M19, M17 по trebisky/S9_Master.xdc и схеме Bitmain).
+
+Для stock S9 используйте:
+  — xdc/S9_Master.xdc и xdc/fragments/
+  — scheme/vivado_board_files/trebisky/ (тоже неполный — только 2 LED в part0_pins.xml)
+  — pinout/s9_pins.txt
+
+Таблица boot jumpers JP1–JP4 из eSnyne README перенесена в boot_mode/boot_jumpers.txt;
+сверяйте с boot_mode/boot_select.png на своей плате.
+
+Репозиторий eSnyne также описывает T9+/E3 — не все детали 1:1 для S9.

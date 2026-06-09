@@ -1,0 +1,11 @@
+Этап 0 — что нужно физически (не файлы в репо)
+Источники: MelodyCoin/eSnyne README, Muhammad-Yunus/Antminer-S9-PYNQ
+
+[ ] Плата control board Antminer S9 (XC7Z010)
+[ ] Питание — штатный БП майнера или отдельный (см. scheme/pinout_supplements/power_pin.png)
+[ ] USB-UART адаптер (FTDI / CH340), 115200 8N1 — консоль на UART1 PS
+[ ] JTAG-кабель Xilinx Platform Cable USB II или совместимый (Waveshare, Digilent)
+[ ] microSD + кардридер (для SD boot)
+[ ] ПК с Linux или WSL для сборки (PetaLinux/Buildroot)
+
+На S9 UART, SD, JTAG и джамперы boot обычно уже на плате — пайка как на EBAZ4205 не требуется.

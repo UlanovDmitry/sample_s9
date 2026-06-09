@@ -1,0 +1,13 @@
+Версии инструментов в репозиториях S9 (fpga_docs/repos.md)
+Зафиксируйте одну линейку под свой проект — смешивать нельзя.
+
+| Репозиторий | Vivado / SDK | PetaLinux / прочее |
+|-------------|--------------|-------------------|
+| kangyuzhe666/zynq7010-pynq-2.5 | 2019.1 | PetaLinux 2019.1, PYNQ 2.5 |
+| Stavros/ebaz4205 (аналог для S9 PYNQ) | 2019.1 | PetaLinux 2019.1 |
+| Muhammad-Yunus/Antminer-S9-PYNQ | 2019.1 | PYNQ overlays |
+| astranome/Astra_S9_FPGA_Base | 2018.3 | SDK 2018.3 |
+| iliasam/OpenZynqSDR_HW | 2022.2 | PetaLinux (статья Habr) |
+| KarolNi/S9miner_sample | (в .xpr проектах) | bare-metal SDK |
+
+Официальные загрузки: https://www.xilinx.com/support/download.html

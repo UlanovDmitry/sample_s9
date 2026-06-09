@@ -1,0 +1,93 @@
+Сборник материалов по электрической схеме control board Bitmain Antminer S9.
+Часть sample_s9 (этап 0). Оглавление: ../STAGE0.txt
+Источник списка репозиториев: fpga_docs/repos.md (раздел S9)
+
+================================================================================
+ОСНОВНАЯ СХЕМА BITMAIN (один PDF, идентичные копии во всех репозах)
+================================================================================
+
+Файл: AntMiner_ControlBoard_XC7010_V1.01.pdf
+SHA256: 2364A615D1851185FBE65C9DD86FB38E7EEF869BCA4BE67AD69CE4B6577D9D97
+Размер: 597620 байт
+
+Принципиальная схема платы управления S9 на XC7Z010 (Zynq-7010): DDR, NAND,
+Ethernet PHY, SD, UART, JTAG, LED, разъёмы GPIO, питание.
+
+Дубликаты в examples/ (не копировались повторно):
+  - iliasam/OpenZynqSDR_HW/AntMiner_V1.01_schem.pdf
+  - KarolNi/S9miner_sample/AntMiner_ControlBoard_XC7010_V1.01控制板.pdf
+  - polprog/antminer_zynq/AntMiner_ControlBoard_XC7010_V1.01控制板.pdf
+  - Muhammad-Yunus/Antminer-S9-PYNQ/resource/AntMiner_ControlBoard_XC7010_V1.01控制板.pdf
+  - guannan-he/Antminer_s9_pynq/AntMiner_ControlBoard_XC7010_V1_01.pdf
+  - astranome/Astra_S9_FPGA/AntMiner_ControlBoard_XC7010_V1.01.pdf
+  - astranome/Astra_S9_FPGA_Base/docs/AntMiner_ControlBoard.pdf
+  - MelodyCoin/eSnyne/eSnyne(S9) Schematic.pdf
+
+Авторские права на схемы: Bitmain Technologies Ltd. (см. polprog/antminer_zynq).
+
+================================================================================
+ФОТО / РАЗМЕТКА ПЛАТЫ
+================================================================================
+
+board_photo/AntMiner_ControlBoard_XC7010_V1.0.png
+  Репозиторий: polprog/antminer_zynq
+  Фото control board S9 с подписями (не векторная схема).
+
+================================================================================
+ДОПОЛНЕНИЯ К СХЕМЕ (пины, питание, boot) — Muhammad-Yunus/Antminer-S9-PYNQ
+================================================================================
+
+pinout_supplements/Antminer_S9_Pin_Mapping.png  — карта пинов / разъёмов
+pinout_supplements/power_pin.png                — питание
+pinout_supplements/boot_select.png              — джамперы boot mode
+pinout_supplements/I2C_pin.png                  — I2C на разъёмах
+pinout_supplements/SPI_Pin.png                  — SPI на разъёмах
+
+================================================================================
+VIVADO BOARD FILES (привязка BGA-пинов S9, выведена из схемы сообществом)
+================================================================================
+
+vivado_board_files/trebisky/
+  board.xml, part0_pins.xml, preset.xml
+  Репозиторий: trebisky/Antminer
+  URL: http://cholla.mmto.org/zynq/antminer/
+
+vivado_board_files/melodycoin_esnyne/
+  readme.txt, 1.0/board.xml, 1.0/part0_pins.xml, 1.0/preset.xml
+  Репозиторий: MelodyCoin/eSnyne (схема control board S9)
+  ВНИМАНИЕ: part0_pins.xml — см. melodycoin_esnyne/WARNING.txt (не эталон для stock S9)
+
+vivado_board_files/trebisky/ — part0_pins.xml неполный (2 LED); полная карта в ../pinout/s9_pins.txt
+
+Дополнительно в sample_s9 (вне scheme/):
+  ../pinout/s9_pins.txt — trebisky/emio/s9_pins
+  ../pinout/Antminer_S9_GPIO_Pinout.jpg — Muhammad-Yunus
+  ../boot/bootlog_notes.txt — выжимка polprog boot log
+
+================================================================================
+РЕПОЗИТОРИИ S9 ИЗ repos.md — ЧТО ЕСТЬ / ЧЕГО НЕТ ЛОКАЛЬНО
+================================================================================
+
+Есть схема control board S9 (дубликат PDF выше):
+  KarolNi/S9miner_sample
+  polprog/antminer_zynq          (+ PNG фото)
+  kangyuzhe666/zynq7010-pynq-2.5  (в репо PDF нет; схема та же из других источников)
+  guannan-he/Antminer_s9_pynq
+  Muhammad-Yunus/Antminer-S9-PYNQ  (+ pinout PNG)
+  MelodyCoin/eSnyne
+  astranome/Astra_S9_FPGA
+  astranome/Astra_S9_FPGA_Base     (+ схема daughter board — не control board)
+  iliasam/OpenZynqSDR_HW
+
+Нет файла схемы control board в локальном клоне:
+  trebisky/Antminer              (только board_files XML; XDC — в sample_s9/board/)
+  astranome/MicroBlaze-on-Zynq-7010
+  iliasam/OpenZynqSDRApp         (ПО, не HW)
+  cropinghigh/zynq_a9_mb         (репо пустой / без KiCad локально)
+
+Схемы других плат (не control board S9) — не включены:
+  astranome/Astra_S9_FPGA_Base/images/HDMI-S9.pdf  — плата расширения
+  iliasam/OpenZynqSDR_HW/PCB/Schematic1.png        — плата ADC
+
+Внешняя ссылка (не в examples/):
+  eSnyne / Hackaday.io — schematic PDF control board S9 (тот же Bitmain PDF)

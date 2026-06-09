@@ -1,0 +1,17 @@
+Boot mode jumpers — Antminer S9 control board (XC7Z010)
+Источник: MelodyCoin/eSnyne README (таблица для eSnyne/S9)
+
+Джамперы JP1–JP4 (0 = открыт, 1 = замкнут — сверьте с фото boot_select.png):
+
+| Boot Mode | JP1 | JP2 | JP3 | JP4 |
+|-----------|-----|-----|-----|-----|
+| JTAG      |  0  |  0  |  0  |  0  |
+| SD        |  0  |  1  |  0  |  1  |
+| QSPI      |  0  |  0  |  0  |  1  |
+| NAND      |  0  |  1  |  0  |  0  |  ← штатный майнер
+| NOR       |  0  |  0  |  1  |  0  |
+
+Для разработки на SD: выставить SD, записать образ на карту, включить питание.
+Для отладки bitstream/FSBL: JTAG + Xilinx Platform Cable (или аналог).
+
+См. также: boot_mode/boot_select.png, boot_mode/boot_mode.png (astranome)

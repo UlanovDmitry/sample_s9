@@ -1,0 +1,33 @@
+Выжимка из boot/bootlog_stock_nand.log (polprog/antminer_zynq)
+Штатная прошивка Bitmain S9, загрузка с NAND.
+
+Boot ROM / FSBL
+  Xilinx FSBL Release 2015.4
+  Boot mode is NAND
+  Silicon Version 3.1
+  NAND: 256 MiB geometry
+
+U-Boot
+  DRAM: 496 MiB (физически 512 MB, часть зарезервирована)
+  sys_sdram_size = 512 MB
+  NAND: 256 MiB
+  MMC: zynq_sdhci (SD-слот виден загрузчику)
+  Console: serial → ttyPS0, 115200
+  Ethernet: Gem.e000b000
+  bootargs: mem=496M console=ttyPS0,115200 root=ubi0:rootfs ubi.mtd=1 rootfstype=ubifs rw rootwait
+  rootfs: Angstrom на UBIFS в NAND (mtd1)
+
+Linux
+  Linux 3.14.0-xilinx (Angstrom, 2016)
+  Machine model: Xilinx Zynq  (в DTS штатной прошивки — generic, не bitmain-antminer-s9)
+  console [ttyPS0] enabled
+
+Прикладное ПО
+  bmminer (штатный майнер)
+  memory_size ≈ 495632 (KB) в логе bmminer
+
+Для сравнения при своей прошивке
+  — тот же UART: ttyPS0, 115200
+  — DDR: закладывать 512 MB (проверить ревизию: 256×2 vs 512 MB на C41)
+  — SD boot: переключить JP1–JP4 (см. boot_mode/boot_jumpers.txt)
+  — polprog U-Boot DTS: gem0 RGMII, phy @1, uart1, sdhci0, nfc0

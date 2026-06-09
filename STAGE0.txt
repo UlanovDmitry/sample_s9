@@ -1,0 +1,49 @@
+Этап 0 — подготовка Antminer S9 (XC7Z010)
+См. fpga_docs/ZYNQ7000 - туториал.md, раздел «Этап 0»
+
+Структура sample_s9:
+
+scheme/
+  AntMiner_ControlBoard_XC7010_V1.01.pdf   — принципиальная схема Bitmain
+  board_photo/                             — фото платы с подписями (polprog)
+  pinout_supplements/                      — карты пинов, питание, I2C, SPI
+  vivado_board_files/                      — board.xml для Vivado
+    trebisky/                              — предпочтительно для stock S9
+    melodycoin_esnyne/                     — см. WARNING.txt (part0_pins неточны!)
+  SOURCES.txt
+
+pinout/
+  xc7z010clg400pkg.txt                     — pinout корпуса CLG400 (Xilinx)
+  s9_pins.txt                              — разъёмы J1–J9, FAN, I2C → BGA (trebisky)
+  Antminer_S9_GPIO_Pinout.jpg              — детальная карта GPIO (Muhammad-Yunus)
+
+xdc/
+  S9_Master.xdc, s9_board.xdc, fragments/ — constraints PL/EMIO (этап 1+, заготовки)
+
+boot/
+  bootlog_stock_nand.log                   — эталон штатной прошивки (NAND, bmminer)
+  bootlog_notes.txt                        — выжимка: RAM, UART, rootfs, Ethernet
+  uboot_bitmain-antminer-s9.dts            — периферия PS для U-Boot (polprog)
+
+boot_mode/
+  boot_jumpers.txt                         — таблица JP1–JP4 (eSnyne; сверить с фото!)
+  boot_select.png, boot_mode.png           — иллюстрации
+
+tools/
+  versions.txt                             — версии Vivado/PetaLinux по репозам
+  hardware_checklist.txt                   — UART, JTAG, SD, питание
+
+Чего нет в репозиториях S9 (снять с своей платы):
+  — дампы /proc, /proc/mtd (на EBAZ4205 есть в xjtuecho)
+  — boot log после перехода на SD/Linux (свой эталон)
+
+Репозитории — что уже учтено / оговорки:
+  polprog/antminer_zynq      — boot log, U-Boot DTS, фото → в boot/, scheme/
+  Muhammad-Yunus/...         — pinout PNG/JPG → pinout/, scheme/pinout_supplements/
+  MelodyCoin/eSnyne          — jumpers, shopping list; board_files — НЕ эталон пинов S9
+  trebisky/Antminer          — s9_pins.txt, S9_Master.xdc, board_files; сайт cholla.mmto.org
+
+Не использовать для stock S9:
+  — eSnyne xc7z014sclg400pkg.txt (кристалл 7014, не в этом каталоге)
+  — eSnyne part0_pins.xml (пины LED A10/E13 — неверно для S9)
+
