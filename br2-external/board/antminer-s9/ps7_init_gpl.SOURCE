@@ -1,0 +1,12 @@
+# Provenance of ps7_init_gpl.{c,h} in this directory
+#
+# Initial bootstrap (2025): copied from
+#   examples/antminer/astranome-Astra_S9_FPGA/Examples/Debian_Ubuntu/Simple_Project/
+#   SD_BOOT.srcs/.../zynq_processing_system7_0_0/
+#
+# Regenerate after changing PS7 (MIO, DDR):
+#   cd sample_s9/vivado && vivado -mode batch -source s9_ps7.tcl
+#   ./sync_ps7_init.sh
+#
+# astranome SD_BOOT BD: 512 MiB DDR (PCW_DDR_RAM_HIGHADDR=0x1FFFFFFF).
+# s9_ps7.tcl default: 1 GiB (0x3FFFFFFF) — sync after first Vivado run for 1 GiB boards.

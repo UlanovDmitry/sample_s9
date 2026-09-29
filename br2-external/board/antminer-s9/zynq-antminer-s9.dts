@@ -1,0 +1,130 @@
+// SPDX-License-Identifier: GPL-2.0
+/*
+ * Bitmain Antminer S9 — Linux device tree
+ *
+ * Based on Xilinx U-Boot bitmain-antminer-s9.dts (polprog / u-boot-xlnx)
+ * and sample_s9/boot/uboot_bitmain-antminer-s9.dts
+ *
+ * Memory: default 1 GiB (0x40000000). For 512 MiB boards use 0x20000000.
+ * Regenerate ps7_init / BOOT.BIN from Vivado 2024.2 Block Design when MIO/DDR change.
+ */
+
+/dts-v1/;
+#include <dt-bindings/gpio/gpio.h>
+#include "zynq-7000.dtsi"
+
+/ {
+	model = "Bitmain Antminer S9 Board";
+	compatible = "bitmain,antminer-s9", "xlnx,zynq-7000";
+
+	aliases {
+		ethernet0 = &gem0;
+		serial0 = &uart1;
+		mmc0 = &sdhci0;
+		gpio0 = &gpio0;
+	};
+
+	memory@0 {
+		device_type = "memory";
+		/* 1 GB — change to 0x20000000 for 512 MB revisions */
+		reg = <0x0 0x40000000>;
+	};
+
+	reserved-memory {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
+
+		bootcount@efffff0 {
+			reg = <0xefffff0 0x10>;
+			no-map;
+		};
+
+		fpga_space@f000000 {
+			reg = <0xf000000 0x1000000>;
+			no-map;
+		};
+	};
+
+	chosen {
+		stdout-path = "serial0:115200n8";
+	};
+
+	/*
+	 * GPIO labels from KarolNi S9miner_sample P02 — verify on your board.
+	 * MIO numbers: LED 37/38/15, buttons 47/51 (fpga_docs / SoC terms).
+	 */
+	gpio-leds {
+		compatible = "gpio-leds";
+
+		led_r {
+			label = "led_r";
+			gpios = <&gpio0 37 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+		led_g {
+			label = "led_g";
+			gpios = <&gpio0 38 GPIO_ACTIVE_HIGH>;
+			linux,default-trigger = "heartbeat";
+		};
+	};
+
+	gpio-keys {
+		compatible = "gpio-keys";
+		autorepeat;
+
+		s1 {
+			label = "s1";
+			gpios = <&gpio0 47 GPIO_ACTIVE_LOW>;
+			linux,code = <KEY_1>;
+		};
+
+		s2 {
+			label = "s2";
+			gpios = <&gpio0 51 GPIO_ACTIVE_LOW>;
+			linux,code = <KEY_2>;
+		};
+	};
+};
+
+&clkc {
+	ps-clk-frequency = <33333333>;
+};
+
+&gem0 {
+	status = "okay";
+	phy-mode = "rgmii-id";
+	phy-handle = <&ethernet_phy>;
+
+	ethernet_phy: ethernet-phy@1 {
+		reg = <1>;
+	};
+};
+
+&sdhci0 {
+	status = "okay";
+	disable-wp;
+};
+
+&uart1 {
+	status = "okay";
+};
+
+&watchdog0 {
+	status = "okay";
+	reset-on-timeout;
+	timeout-sec = <200>;
+};
+
+/*
+ * NAND is on the stock miner image; disable when booting only from SD
+ * to avoid spurious probe on a bare SD setup.
+ */
+&nfc0 {
+	status = "disabled";
+};
+
+&smcc {
+	status = "disabled";
+};

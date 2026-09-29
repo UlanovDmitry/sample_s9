@@ -1,0 +1,4 @@
+ext4load mmc 0:2 0x2000000 /boot/uImage
+ext4load mmc 0:2 0x1f00000 /boot/zynq-antminer-s9.dtb
+setenv bootargs "console=ttyPS0,115200 root=/dev/mmcblk0p2 rootwait"
+bootm 0x2000000 - 0x1f00000

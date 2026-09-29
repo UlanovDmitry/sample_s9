@@ -1,0 +1,4 @@
+menu "Antminer S9 (BR2_EXTERNAL)"
+comment "Board files: board/antminer-s9/"
+comment "Defconfig:   configs/antminer_s9_defconfig"
+endmenu

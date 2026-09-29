@@ -11,3 +11,8 @@
 | KarolNi/S9miner_sample | (в .xpr проектах) | bare-metal SDK |
 
 Официальные загрузки: https://www.xilinx.com/support/download.html
+
+Рекомендуемый стек для своего Linux (Buildroot) — см. br2-external/README.md:
+  Vivado / Vitis 2024.2
+  Buildroot 2025.02.x LTS
+  linux-xlnx / u-boot-xlnx xilinx_v2024.2 tags
