@@ -4,6 +4,8 @@
 [ ] Плата control board Antminer S9 (XC7Z010)
 [ ] Питание — штатный БП майнера или отдельный (см. scheme/pinout_supplements/power_pin.png)
 [ ] USB-UART адаптер (FTDI / CH340), 115200 8N1 — консоль на UART1 PS
+    Рабочий: модуль CH340, джампер 3.3 V (VCC–3V3). Распиновка/драйвер:
+    https://mypractic.ru/modul-ch340-sxema-xarakteristiki-ustanovka-drajvera.html
 [ ] JTAG-кабель Xilinx Platform Cable USB II или совместимый (Waveshare, Digilent)
 [ ] microSD + кардридер (для SD boot)
 [ ] ПК с Linux или WSL для сборки (PetaLinux/Buildroot)
